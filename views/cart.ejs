@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+</head>
+<body>
+    <div class="nav">
+        <nav class="flex navbar container">
+            <a href="/products">
+            <img src="/images/logo.png" alt="home">
+            </a>
+            <input  class="search"  type="text" placeholder="Search Here">
+
+            <div class="flex">
+                <% if(user) { %>
+                    <img class="userboard"  src="/upload/<%= user.image %>" alt="profile" height="60px" width="100px">
+                    <h3 class="userboard" ><%= "Welcome "+user.name%></h3>
+                    <a class="userboard"  href="/users/logout">logout</a>
+                    <a class="userboard"  href="/carts">
+                        <h2>cart : <%= user.cartList.length %></h2>
+                    </a>
+                <%} else {%>
+                    <a class="userboard"  href="/">login/ register</a>
+                <% } %>
+            </div>
+        </nav>
+    </div>
+  
+    <main class="cart container">
+        <h2>My Cart</h2>
+        <div class="flex2">
+            <section class="cartitem">
+                <% carts.forEach(cart=>{ %>
+                    <div>
+                        <div class="flex3">
+                            <img src="/upload/<%= cart.cartProduct.image %>" alt="shoes">
+                            <div class="itemdetail">
+                                <h3><%= cart.cartProduct.name %></h3>
+                                <p>Category: <%= cart.cartProduct.category %></p>
+                                <p class="price">₹<%= cart.cartProduct.price * cart.numberOfItem  %></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex3 cartitemnumber">
+                            <div class="itemcount"> 
+                                <p>Number of Item :<%= cart.numberOfItem %></p>
+                                <a href="/carts/<%= cart.id %>/edit"> Edit no. of Item</a>
+                            </div>
+                            <a href="/carts/<%= cart.id %>/delete">Delete form cart</a>
+                        </div>
+                    </div>
+                  
+                <% }) %>
+            </section>
+             <section class="cartprice">
+                 <h2>Total Item :<%= user.cartList.length %> </h2>
+                <% var sum = carts.reduce((accum,cart)=>{ %>
+                    <%return accum + (cart.cartProduct.price * cart.numberOfItem)  %>
+                <% },0) %>
+                <h2 class="price">Total Amount :₹<%= sum %></h2>
+                <button class="placeorder">Place Order</button>
+            </section>
+        </div>
+
+    </main>
+
+</body>
+</html>

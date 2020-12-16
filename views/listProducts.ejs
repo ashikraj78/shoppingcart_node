@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+</head>
+<body>
+    <div class="nav">
+        <nav class="flex navbar container">
+            <a href="/products">
+            <img class="logo" src="/images/logo.png" alt="home">
+            </a>
+                  
+            <input  class="search"  type="text"  >
+            <a class="search-link">
+                <button class="search-linkbtn">search</button></a>
+
+            <div class="flex">
+                <% if(user) { %>
+                    <img class="userboard"  src="/upload/<%= user.image %>" alt="profile" height="60px" width="100px">
+                    <h3 class="userboard" ><%= "Welcome "+user.name%></h3>
+                    <a class="userboard"  href="/users/logout">logout</a>
+                    <a class="userboard flex4"  href="/carts">
+                        <img src="/images/supermarket.png" alt="">
+                        <h2 class="cart"><%= user.cartList.length %></h2>
+                    </a>
+                <%} else {%>
+                    <a class="userboard"  href="/users/login">login</a>
+                <% } %>
+            </div>
+        </nav>
+    </div>
+    
+    <h2>Our Products</h2>
+
+    <section>
+        <% if(user.admin){%>
+            <% console.log(user) %>
+            <a href="/products/new"> Add</a>
+        <% } %>
+    </section>
+    <div class="flex4">
+        <section class="filter">
+            <h2>Filters</h2>
+            <ul>
+                <h3>Categories</h3>
+                <li><a href="/products?category=shoes">shoes</a></li>
+                <li><a href="/products?category=shirt">shirt</a></li>
+                <li><a href="/products?category=watch">watch</a></li>
+                <li><a href="/products?category=glass">glass</a></li>
+                <li><a href="/products?category=pant">pant</a></li>
+            </ul>
+            <ul>
+                <h3>By Price</h3>
+                <li><a href="/products?price=LowToHigh">-- Low to High</a></li>
+                <li><a href="/products?price=HighToLow">-- High to Low</a></li>
+            </ul>
+        </section>
+        <section class="products">
+            <% products.forEach(product=>{ %>
+                <div class="product">
+                    <a href="/products/<%= product.id %>">
+                        <img src="/upload/<%= product.image %>" alt="image">
+                        <h3><%= product.name %></h3>
+                        <p>Category: <%= product.category %></p>
+                        <p>Price : <%= product.price %></p>
+                    </a>
+                </div>
+                <% }) %>
+        </section>
+    </div>
+    <script>
+        const search = document.querySelector(".search");
+        let searchVal;
+        search.addEventListener("keyup",function(e){
+            e.preventDefault()
+            if(!(e.keyCode === 13)) return;
+            searchVal = search.value;
+            const searchLink = document.querySelector(".search-link");
+            searchLink.href=`/products?name=${searchVal}`;
+        })
+
+    </script>
+</body>
+</html>
+

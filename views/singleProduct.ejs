@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div class="nav">
+        <nav class="flex navbar container">
+            <a href="/products">
+            <img src="/images/logo.png" alt="home">
+            </a>
+            <input  class="search"  type="text" placeholder="Search Here">
+
+            <div class="flex">
+                <% if(user) { %>
+                    <img class="userboard"  src="/upload/<%= user.image %>" alt="profile" height="60px" width="100px">
+                    <h3 class="userboard" ><%= "Welcome "+user.name%></h3>
+                    <a class="userboard"  href="/users/logout">logout</a>
+                    <a class="userboard"  href="/carts">
+                        <h2>cart : <%= user.cartList.length %></h2>
+                    </a>
+                <%} else {%>
+                    <a class="userboard"  href="/">login/ register</a>
+                <% } %>
+            </div>
+        </nav>
+    </div>
+    
+    <h2>Our Products</h2>
+    <section class="flex2">
+        <div class="displayimage">
+            <img  class="productimage" src="/upload/<%= products.image %>" alt="shoes">
+        </div>
+
+        <div class="like" >
+            <% if(user) { %>
+                <a href='/products/<%= products.id %>/likes'> likes
+                    <span><%= products.likes %></span>
+                </a>
+                <% if(user.id === products.author.id){%>
+                    <a href="/products/<%= products.id %>/delete">delete</a>
+                    <a href="/products/<%= products.id %>/update">update</a>
+                <% } %>
+                
+            <% } %>
+        </div>
+        <div class="displayproduct">
+            <h2 class="productname"><%= products.name %></h2>
+            <p>Category: <%= products.category %></p>
+            <p class="price" > ₹<%= products.price %></p>
+        </div>
+
+      
+        <section>
+            <div class="displaypurchase">
+                <a href="/products/<%= products.id %>/cart">
+                    <button class="addcart">ADD TO CART</button>
+                </a>
+                <a href="">
+                    <button class="buynow">BUY NOW</button>
+                </a>
+            </div>
+            <div class="review">
+                <div>
+                    <% if(user) { %>
+                        <form action="/products/<%= products.id %>/reviews" method="POST">
+                        <input class="addreview" type="text" name="content" placeholder="Add Review">
+                        <input class="addreviewbtn" type="submit" value="Add Review">
+                        
+                        </form>
+                    <% } %>
+
+                </div>
+               
+
+
+                <% products.reviews.forEach(review =>{ %>
+                    <p class="reviewcontent"><%= review.content %> </p>
+                    <div class="flex2 reviewuser">
+                        <p><%= review.author.name %></p>
+                        <% if(user.id === review.author.id){ %>
+                            <div >
+                                <a href="/reviews/<%= review._id %>/edit">edit</a>
+                                <a href="/reviews/<%= review._id %>/delete">delete</a>
+                            </div>
+                        <% } %>
+                        <% if(user.id === products.author.id){ %>
+                            <div>
+                                <a href="/reviews/<%= review._id %>/delete">delete</a>
+                            </div>
+                        <% } %>
+                    </div>
+
+                <% }) %>
+            </div>
+        </section>
+    </section>
+</body>
+</html>

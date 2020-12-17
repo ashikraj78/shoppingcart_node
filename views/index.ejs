@@ -2,10 +2,24 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <body class="homepage">
+    <div class="homepageleft">
+      <h1>Welcome to online </br> <strong>Tuckshop</strong> </h1>
+      <div >
+        <a href="/users/login">
+          <button class="hp-login">Login</button>
+        </a>
+      </div>
+      <div >
+        <a href="/users/register">
+          <button class="hp-register">Register</button>
+        </a>
+      </div>
+    </div>
+    <div>
+      <img src="/images/shop.gif" alt="homepage" />
+    </div>
   </body>
 </html>

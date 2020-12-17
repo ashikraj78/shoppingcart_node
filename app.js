@@ -26,7 +26,7 @@ var auth = require("./middleware/auth");
 // connect to mongo-db
 
 mongoose.connect(
-  "mongodb://localhost:27017/shoppingcart",
+  process.env.MONGO_DB,
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
     console.log("connected", err ? err : true);

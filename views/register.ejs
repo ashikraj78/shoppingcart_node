@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-
-</head>
-<body class="login">
-    <form action="/users/register" method="POST" enctype="multipart/form-data">
-      <h1>Register</h1>
-      <label for="name"> Name</label>
-      <input type="text" name="name">
-      <label for="email"> Email</label>
-      <input type="text" name="email">
-      <label for="password"> Password</label>
-      <input type="password" name="password">
-      <label for="profile"> Profile Picture</label>
-      <input type="file" name="image">
-      <input type="submit" value="Register">
-      <% if (message.length > 0) { %>
-        <div class="error">*<%= message %></div>
-    <% } %>
-    </form>
-    <div class="anotherlogin">
-        <a href="/auth/github">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body class="loginpage">
+    <main class="main-login">
+      <section class="login">
+        <form
+          action="/users/register"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <h1>Register</h1>
+          <label for="name"> Name</label>
+          <input type="text" name="name" />
+          <label for="email"> Email</label>
+          <input type="text" name="email" />
+          <label for="password"> Password</label>
+          <input type="password" name="password" />
+          <label for="profile"> Profile Picture</label>
+          <input type="file" name="image" />
+          <input type="submit" value="Register" />
+          <% if (message.length > 0) { %>
+          <div class="error">*<%= message %></div>
+          <% } %>
+        </form>
+        <div class="anotherlogin">
+          <a href="/auth/github">
             <button>Rgister with Github</button>
-        </a>
-        <a href="/auth/google">
+          </a>
+          <a href="/auth/google">
             <button>Register with Google</button>
-        </a>
+          </a>
+        </div>
+      </section>
+    </main>
+    <div>
+      <img class="tuckshop" src="/images/tuck2.gif" alt="tuckshop" />
     </div>
-
-</body>
+  </body>
 </html>

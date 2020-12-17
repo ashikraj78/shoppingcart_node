@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-
-</head>
-<body class="login">
-    <form    action="/users/login" method="POST">
-        <h1>Login</h1>
-        <label for="email"> Email</label>
-        <input type="text" name="email">
-        <label for="password"> Password</label>
-        <input type="password" name="password">
-        <input type="submit" value="Login">
-        <% if (message.length > 0) { %>
-            <div class="error">*<%= message %></div>
-        <% } %>
-    </form>
-    <div class="anotherlogin">
-        <a href="/auth/github">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body class="loginpage">
+    <main class="main-login">
+      <section class="login">
+        <form action="/users/login" method="POST">
+          <h1>Login</h1>
+          <label for="email"> Email</label>
+          <input type="text" name="email" />
+          <label for="password"> Password</label>
+          <input type="password" name="password" />
+          <input type="submit" value="Login" />
+          <% if (message.length > 0) { %>
+          <div class="error">*<%= message %></div>
+          <% } %>
+        </form>
+        <div class="anotherlogin">
+          <a href="/auth/github">
             <button>Login with Github</button>
-        </a>
-        <a href="/auth/google">
+          </a>
+          <a href="/auth/google">
             <button>Login with Google</button>
-        </a>
+          </a>
+        </div>
+        <a href="/users/register">New to Tuck-Shop? Create an account </a>
+      </section>
+    </main>
+    <div>
+      <img class="tuckshop" src="/images/tuck2.gif" alt="tuckshop" />
     </div>
-    <a href="/users/register">New to Tuck-Shop? Create an account </a>
-</body>
+  </body>
 </html>

@@ -227,11 +227,29 @@ a {
 }
 
 /* login  & register*/
+.loginpage {
+  display: flex;
+  justify-content: space-between;
+  background-color: #dbeefc;
+}
+.tuckshop {
+  width: 100vh;
+  right: 0px;
+}
+.main-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
 
 .login {
+  /* width: 100%; */
   border: 1px solid black;
   display: inline-block;
   padding: 2rem 1rem;
+  background-color: #dcf2fc;
+  border-radius: 5px;
 }
 
 .login input {
